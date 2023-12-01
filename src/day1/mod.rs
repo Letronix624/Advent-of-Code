@@ -35,7 +35,6 @@ pub fn solve() {
                             }
                             if x[0..step].contains(text) {
                                 result = result.replacen(text, number, 1);
-                                dbg!("hallo");
                                 l = true;
                                 break;
                             }
