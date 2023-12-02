@@ -1,9 +1,10 @@
 const INPUT: &str = include_str!("input");
-#[allow(dead_code)]
+
+#[cfg(not(feature = "part_two"))]
 const RED_CUBES: usize = 12;
-#[allow(dead_code)]
+#[cfg(not(feature = "part_two"))]
 const GREEN_CUBES: usize = 13;
-#[allow(dead_code)]
+#[cfg(not(feature = "part_two"))]
 const BLUE_CUBES: usize = 14;
 
 struct Game {
@@ -15,7 +16,7 @@ struct Game {
 
 impl Game {
     /// Returns if this game is possible with the number or red, green and blue cubes we have in the bag.
-    #[allow(dead_code)]
+    #[cfg(not(feature = "part_two"))]
     pub fn possible(&self) -> bool {
         self.red_cubes <= RED_CUBES
             && self.green_cubes <= GREEN_CUBES
@@ -23,7 +24,7 @@ impl Game {
     }
 
     /// Returns the game index of this game.
-    #[allow(dead_code)]
+    #[cfg(not(feature = "part_two"))]
     pub fn id(&self) -> usize {
         self.id
     }
