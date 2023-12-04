@@ -129,7 +129,6 @@ pub fn solve() {
                         }
                     }
                 }
-                dbg!(&numbers);
                 if numbers.len() == 2 {
                     result += numbers[0] * numbers[1];
                 }
