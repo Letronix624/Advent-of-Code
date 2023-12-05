@@ -43,10 +43,6 @@ impl Card {
         })
     }
 
-    pub fn id(&self) -> u32 {
-        self.id
-    }
-
     /// Returns the number of matches of the card.
     fn matches(&self) -> u32 {
         let numbers: Vec<&u32> = self
@@ -79,6 +75,7 @@ impl std::fmt::Debug for Card {
 }
 
 /// Returns the total amount of cards won with the cards.
+#[cfg(feature = "part_two")]
 fn iterative_cards(cards: &Vec<Card>, card_id: usize) -> u32 {
     if card_id >= cards.len() {
         return 0;
@@ -113,6 +110,7 @@ pub fn solve() {
 
     let mut result = 0;
 
+    #[allow(clippy::needless_range_loop)]
     for card in 0..cards.len() {
         #[cfg(not(feature = "part_two"))]
         {
