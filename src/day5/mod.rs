@@ -1,3 +1,6 @@
+#[cfg(feature = "part_two")]
+use rayon::prelude::*;
+
 const INPUT: &str = include_str!("input");
 
 struct Mapping {
@@ -93,12 +96,13 @@ impl Almanac {
         #[cfg(feature = "part_two")]
         for seed_range in self.seeds.iter() {
             for seed in seed_range.clone() {
-                let mut seed = seed;
-                for mapping in self.maps.iter() {
-                    seed = mapping.process(seed);
-                }
-                if seed < lowest {
-                    lowest = seed;
+                let seed = std::sync::Arc::new(std::sync::Mutex::new(seed));
+                self.maps.par_iter().for_each(|mapping| {
+                    let mut seed = seed.lock().unwrap();
+                    *seed = mapping.process(*seed);
+                });
+                if *seed.lock().unwrap() < lowest {
+                    lowest = *seed.lock().unwrap();
                 }
             }
         }
