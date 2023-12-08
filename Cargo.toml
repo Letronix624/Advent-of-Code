@@ -6,6 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+hashbrown = "0.14.3"
+num = "0.4.1"
 
 [features]
 part_two = []
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
